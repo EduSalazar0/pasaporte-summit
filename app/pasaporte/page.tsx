@@ -16,6 +16,7 @@ export default function Pasaporte() {
   const [visitas, setVisitas] = useState<Visita[]>([]);
   const [nombreEstudiante, setNombreEstudiante] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchDatos = async () => {
@@ -49,6 +50,10 @@ export default function Pasaporte() {
 
       if (!error && visitasData) {
         setVisitas(visitasData as unknown as Visita[]);
+        // Activar modal si llegó a la meta
+        if (visitasData.length >= 21) {
+          setShowModal(true);
+        }
       }
       setLoading(false);
     };
@@ -59,33 +64,30 @@ export default function Pasaporte() {
   if (loading) return <div className="min-h-screen text-white flex justify-center items-center">Cargando tu pasaporte...</div>;
 
   return (
-    <div className="min-h-screen p-6 text-white font-sans flex flex-col items-center">
+    <div className="min-h-screen p-6 text-white font-sans flex flex-col items-center relative">
       
       {/* Logos y Bienvenida */}
       <div className="w-full max-w-sm mt-8 mb-8 text-center flex flex-col items-center">
-        
-        {/* Logos lado a lado */}
         <div className="flex flex-row items-center justify-center w-full mb-6">
           <img src="/titulo.png" alt="Summit Empresarial" className="h-10 w-auto object-contain drop-shadow-md" />
           <div className="h-10 w-px bg-white/40 mx-5 rounded-full"></div>
           <img src="/logo.png" alt="UDLA" className="h-10 w-auto object-contain drop-shadow-md" />
         </div>
 
-        <h1 className="text-3xl font-extrabold tracking-tight mb-2 text-white drop-shadow-md">
-          ¡Te damos la bienvenida, {nombreEstudiante}!
+        <h1 className="text-3xl font-extrabold tracking-tight mb-3 text-white drop-shadow-md leading-tight">
+          ¡Te damos la bienvenida,<br/>{nombreEstudiante}!
         </h1>
         
-        <p className="text-sm font-bold uppercase tracking-widest text-white drop-shadow-md px-4 leading-relaxed">
-          Tu progreso de networking en la<br/>feria:
+        {/* Corrección de salto de línea: Usamos un ancho más flexible */}
+        <p className="text-[12px] font-bold uppercase tracking-[0.15em] text-white drop-shadow-md px-2 max-w-full whitespace-nowrap">
+          Tu progreso de networking en la feria
         </p>
       </div>
 
       {/* Dashboard Pasaporte */}
-      <div className="bg-black/30 backdrop-blur-xl w-full max-w-sm rounded-2xl shadow-2xl border border-white/10 overflow-hidden flex flex-col">
+      <div className="bg-black/30 backdrop-blur-xl w-full max-w-sm rounded-2xl shadow-2xl border border-white/10 overflow-hidden flex flex-col mb-10">
         <div className="p-4 border-b border-white/10 bg-black/40 flex justify-between items-center">
           <h2 className="text-sm font-bold text-gray-200 uppercase tracking-wider">Progreso del Summit</h2>
-          
-          {/* Aquí está la corrección: 21 en lugar de 15 */}
           <span className="bg-[#C10230] text-white text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_10px_rgba(193,2,48,0.5)]">
             {visitas.length} / 21
           </span>
@@ -105,8 +107,8 @@ export default function Pasaporte() {
           ) : (
             <ul className="space-y-3">
               {visitas.map((visita, index) => (
-                <li key={index} className="flex items-center space-x-4 bg-black/40 p-3.5 rounded-xl border border-white/5 transition-all">
-                  <div className="h-10 w-10 rounded-full bg-green-500/10 flex items-center justify-center shrink-0 border border-green-500/30">
+                <li key={index} className="flex items-center space-x-4 bg-black/40 p-3.5 rounded-xl border border-white/5">
+                  <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 border border-green-500/30">
                     <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7"></path>
                     </svg>
@@ -118,6 +120,41 @@ export default function Pasaporte() {
           )}
         </div>
       </div>
+
+      {/* MODAL DE META CUMPLIDA (Glassmorphism) */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-6 animate-in fade-in duration-500">
+          <div className="bg-black/40 border border-[#C10230]/50 p-8 rounded-[2.5rem] text-center shadow-[0_0_50px_rgba(193,2,48,0.2)] max-w-sm relative">
+            <div className="text-6xl mb-6 drop-shadow-lg">🏆</div>
+            <h2 className="text-2xl font-black mb-4 uppercase tracking-tighter italic">¡Recorrido Completado!</h2>
+            <p className="text-gray-200 mb-8 text-sm leading-relaxed font-medium">
+              Felicidades, has conectado con todas las empresas del Summit. Tu futuro profesional ha dado un gran paso hoy. <br/><br/>
+              Sigue la experiencia y descubre las próximas actividades en:
+            </p>
+            
+            {/* Botón Instagram estilo UDLA Glass */}
+            <a 
+              href="https://instagram.com/aseudlaec" 
+              target="_blank" 
+              className="group flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 border border-white/20 py-4 px-6 rounded-2xl transition-all active:scale-95 shadow-xl"
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span className="font-black text-white tracking-widest uppercase text-sm">@aseudlaec</span>
+            </a>
+
+            <button 
+              onClick={() => setShowModal(false)}
+              className="mt-8 text-gray-500 text-[10px] uppercase font-bold tracking-widest hover:text-white transition-colors"
+            >
+              Cerrar mensaje
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
