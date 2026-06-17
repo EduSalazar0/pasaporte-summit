@@ -72,7 +72,7 @@ export default function Pasaporte() {
         </div>
 
         <h1 className="text-3xl font-extrabold tracking-tight mb-2 text-white drop-shadow-md">
-          ¡Bienvenido, {nombreEstudiante}!
+          ¡Te damos la bienvenida, {nombreEstudiante}!
         </h1>
         
         {/* Frase en blanco, de mayor tamaño y sin punto final */}
