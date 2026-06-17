@@ -75,9 +75,8 @@ export default function Pasaporte() {
           ¡Te damos la bienvenida, {nombreEstudiante}!
         </h1>
         
-        {/* Frase en blanco, de mayor tamaño y sin punto final */}
-        <p className="text-base font-bold uppercase tracking-widest text-white drop-shadow-md mt-1 px-4">
-          Tu progreso de networking en la Feria:
+        <p className="text-sm font-bold uppercase tracking-widest text-white drop-shadow-md px-4 leading-relaxed">
+          Tu progreso de networking en la<br/>feria:
         </p>
       </div>
 
@@ -85,8 +84,10 @@ export default function Pasaporte() {
       <div className="bg-black/30 backdrop-blur-xl w-full max-w-sm rounded-2xl shadow-2xl border border-white/10 overflow-hidden flex flex-col">
         <div className="p-4 border-b border-white/10 bg-black/40 flex justify-between items-center">
           <h2 className="text-sm font-bold text-gray-200 uppercase tracking-wider">Progreso del Summit</h2>
+          
+          {/* Aquí está la corrección: 21 en lugar de 15 */}
           <span className="bg-[#C10230] text-white text-xs font-bold px-3 py-1 rounded-full shadow-[0_0_10px_rgba(193,2,48,0.5)]">
-            {visitas.length} / 15
+            {visitas.length} / 21
           </span>
         </div>
         
