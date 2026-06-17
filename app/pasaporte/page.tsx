@@ -50,7 +50,6 @@ export default function Pasaporte() {
 
       if (!error && visitasData) {
         setVisitas(visitasData as unknown as Visita[]);
-        // Activar modal si llegó a la meta
         if (visitasData.length >= 21) {
           setShowModal(true);
         }
@@ -68,19 +67,20 @@ export default function Pasaporte() {
       
       {/* Logos y Bienvenida */}
       <div className="w-full max-w-sm mt-8 mb-8 text-center flex flex-col items-center">
+        
+        {/* Logos ajustados proporcionalmente */}
         <div className="flex flex-row items-center justify-center w-full mb-6">
-          <img src="/titulo.png" alt="Summit Empresarial" className="h-10 w-auto object-contain drop-shadow-md" />
-          <div className="h-10 w-px bg-white/40 mx-5 rounded-full"></div>
-          <img src="/logo.png" alt="UDLA" className="h-10 w-auto object-contain drop-shadow-md" />
+          <img src="/titulo.png" alt="Summit Empresarial" className="h-14 w-auto object-contain drop-shadow-md" />
+          <div className="h-16 w-px bg-white/40 mx-4 rounded-full"></div>
+          <img src="/logo.png" alt="ASE UDLA" className="h-20 w-auto object-contain drop-shadow-md scale-110 origin-left" />
         </div>
 
         <h1 className="text-3xl font-extrabold tracking-tight mb-3 text-white drop-shadow-md leading-tight">
           ¡Te damos la bienvenida,<br/>{nombreEstudiante}!
         </h1>
         
-        {/* Corrección de salto de línea: Usamos un ancho más flexible */}
         <p className="text-[12px] font-bold uppercase tracking-[0.15em] text-white drop-shadow-md px-2 max-w-full whitespace-nowrap">
-          Tu progreso de networking en la feria
+          Tu progreso de networking en la feria:
         </p>
       </div>
 
@@ -132,7 +132,6 @@ export default function Pasaporte() {
               Sigue la experiencia y descubre las próximas actividades en:
             </p>
             
-            {/* Botón Instagram estilo UDLA Glass */}
             <a 
               href="https://instagram.com/aseudlaec" 
               target="_blank" 

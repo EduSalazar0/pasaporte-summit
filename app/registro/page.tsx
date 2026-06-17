@@ -56,15 +56,15 @@ function RegistroForm() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-6 text-white font-sans">
       
-      {/* Contenedor Superior: Logos lado a lado */}
+      {/* Contenedor Superior: Logos ajustados con nuevas proporciones */}
       <div className="w-full max-w-sm flex flex-col items-center mt-10 mb-6">
         <div className="flex flex-row items-center justify-center w-full mb-6">
-          <img src="/titulo.png" alt="Summit Empresarial" className="h-10 w-auto object-contain drop-shadow-md" />
-          <div className="h-10 w-px bg-white/40 mx-5 rounded-full"></div>
-          <img src="/logo.png" alt="UDLA" className="h-10 w-auto object-contain drop-shadow-md" />
+          <img src="/titulo.png" alt="Summit Empresarial" className="h-14 w-auto object-contain drop-shadow-md" />
+          <div className="h-16 w-px bg-white/40 mx-4 rounded-full"></div>
+          <img src="/logo.png" alt="ASE UDLA" className="h-20 w-auto object-contain drop-shadow-md scale-110 origin-left" />
         </div>
         
-        {/* Estructura tipográfica uniforme con efecto Glow en CRECE */}
+        {/* Estructura tipográfica uniforme con efecto Glow */}
         <div className="text-center px-2">
           <p className="text-base font-bold tracking-widest text-white uppercase drop-shadow-md mb-1">
             Conecta. Descubre. <span className="text-[#ff4d4d] drop-shadow-[0_0_12px_rgba(255,77,77,1)]">Crece.</span>
@@ -153,3 +153,4 @@ export default function Registro() {
     </Suspense>
   );
 }
+
